@@ -1,0 +1,40 @@
+// SeaOfThieves (1.6.4) SDK
+
+#ifdef _MSC_VER
+	#pragma pack(push, 0x8)
+#endif
+
+#include "../SDK.hpp"
+
+namespace SDK
+{
+//---------------------------------------------------------------------------
+//Functions
+//---------------------------------------------------------------------------
+
+// Function Cooking.CookerComponent.OnRep_CookingState
+// (Final, Native, Private, HasOutParms)
+// Parameters:
+// struct FCookingClientRepresentation OldRepresentation              (ConstParm, Parm, OutParm, ReferenceParm)
+
+void UCookerComponent::OnRep_CookingState(const struct FCookingClientRepresentation& OldRepresentation)
+{
+	static auto fn = UObject::FindObject<UFunction>("Function Cooking.CookerComponent.OnRep_CookingState");
+
+	UCookerComponent_OnRep_CookingState_Params params;
+	params.OldRepresentation = OldRepresentation;
+
+	auto flags = fn->FunctionFlags;
+	fn->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(fn, &params);
+
+	fn->FunctionFlags = flags;
+}
+
+
+}
+
+#ifdef _MSC_VER
+	#pragma pack(pop)
+#endif
