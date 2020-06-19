@@ -1,6 +1,7 @@
 #include "config.h"
 #include "json.h"
 #include <experimental/filesystem>
+#include <iomanip>
 
 nlohmann::json json;
 
@@ -170,7 +171,7 @@ bool c_config::load(const std::string &file) {
 		return false;
 
 	try {
-		json << input_file;
+        input_file >> json;
 	}
 	catch (const std::exception &ex) {
 		UNREFERENCED_PARAMETER(ex);
@@ -363,7 +364,7 @@ bool c_offsets::load(const std::string& file) {
 		return false;
 
 	try {
-		json << input_file;
+        input_file >> json;
 	}
 	catch (const std::exception& ex) {
 		UNREFERENCED_PARAMETER(ex);
